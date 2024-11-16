@@ -1,23 +1,23 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.compose.compiler.no.version)
+    alias(libs.plugins.google.service.no.version)
+    alias(libs.plugins.kotlin.serialization)
     kotlin("kapt")
 }
 
 android {
-    namespace = "dev.kick.public_data"
+    namespace = "dev.kick.presentation"
     compileSdk = libs.versions.compile.sdk.get().toInt()
 
     defaultConfig {
-        applicationId = "dev.kick.public_data"
         minSdk = libs.versions.min.sdk.get().toInt()
-        targetSdk = libs.versions.compile.sdk.get().toInt()
-        versionName = libs.versions.version.name.get()
-        versionCode = libs.versions.version.code.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -26,14 +26,6 @@ android {
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
-            )
-            buildConfigField("String", "SERVICE_KEY",
-                properties["RELEASE_OPEN_API_SERVICE_KEY"].toString()
-            )
-        }
-        debug {
-            buildConfigField("String", "SERVICE_KEY",
-                properties["DEBUG_OPEN_API_SERVICE_KEY"].toString()
             )
         }
     }
@@ -47,9 +39,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":presentation"))
     implementation(project(":domain"))
-    implementation(project(":data"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -63,9 +53,17 @@ dependencies {
     ksp(libs.hilt.android.compiler)
     ksp(libs.androidx.hilt.compiler)
 
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.bundles.compose)
+    implementation(libs.bundles.coil)
+
+    //json Serialization
+    implementation(libs.kotlinx.serialization.json)
+
     implementation(libs.timber)
 
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.crashlytics)
-    implementation(libs.firebase.analytics)
+    debugImplementation(libs.leakcanary.android)
+
+    //Paging
+    implementation(libs.androidx.paging.compose)
 }
