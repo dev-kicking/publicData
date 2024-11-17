@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.compose.compiler.no.version)
-    alias(libs.plugins.google.service.no.version)
     alias(libs.plugins.kotlin.serialization)
     kotlin("kapt")
 }
@@ -35,6 +34,13 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.14"
+    }
+    buildFeatures {
+        compose = true
+        buildConfig = true
     }
 }
 

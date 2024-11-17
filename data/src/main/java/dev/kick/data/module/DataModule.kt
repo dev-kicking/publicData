@@ -13,6 +13,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dev.kick.data.datasource.AppDatabase
 import dev.kick.data.service.OpenDataService
+import dev.kick.data.util.RetryInterceptor
 import dev.kick.domain.repo.AppApplication
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

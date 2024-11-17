@@ -1,8 +1,7 @@
-package dev.kick.data.module
+package dev.kick.data.util
 
 import okhttp3.Interceptor
 import okhttp3.Response
-import java.util.concurrent.TimeUnit
 import kotlin.math.pow
 
 class RetryInterceptor(

@@ -19,7 +19,7 @@ data class CalorieForAgeMetaDataResponse(
         @SerializedName("비타민(A)") val vitaminA: String,
         @SerializedName("비타민(B1)") val vitaminB1: String,
         @SerializedName("비타민(B2)") val vitaminB2: Int,
-        @SerializedName("분류(X)") val classificationX: String,
+        @SerializedName("분류(X)") val classificationPersonType: String,
         @SerializedName("남녀구분") val genderClassification: Int,
         @SerializedName("그외 비만체크사항") val otherObesityCheckItems: Int
     )

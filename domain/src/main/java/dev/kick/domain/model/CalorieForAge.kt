@@ -10,10 +10,15 @@ data class CalorieForAge(
     val calories: Int,
     val protein: Int,
     val calcium: Int,
-    val vitaminA: String,
-    val vitaminB1: String,
+    val vitaminA: Double,
+    val vitaminB1: Double,
     val vitaminB2: Int,
-    val classificationX: String,
+    val classificationPersonType: PersonType,
     val genderClassification: Int,
-    val otherObesityCheckItems: Int
+    val otherObesityCheckItems: Int,
+    val isLike: Boolean = false
 )
+
+enum class PersonType{
+    MALE, FEMALE, CHILD
+}

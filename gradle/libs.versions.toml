@@ -64,6 +64,7 @@ androidx-material3 = { module = "androidx.compose.material3:material3", version.
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltCompiler" }
 androidx-ui = { module = "androidx.compose.ui:ui" }
 androidx-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
 
@@ -113,6 +114,7 @@ compose = [
     "androidx-hilt-navigation-compose",
     "androidx-ui",
     "androidx-ui-graphics",
+    "androidx-ui-tooling",
     "androidx-ui-tooling-preview",
 ]
 

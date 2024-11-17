@@ -3,7 +3,9 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
-    kotlin("kapt")
+    alias(libs.plugins.google.service)
+    alias(libs.plugins.firebase.crashlytics)
+    alias(libs.plugins.compose.compiler.no.version)
 }
 
 android {
@@ -68,4 +70,6 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.crashlytics)
     implementation(libs.firebase.analytics)
+
+    implementation(libs.bundles.compose)
 }
