@@ -66,8 +66,7 @@ fun CaloriesForAgeListScreen(
                 modifier = modifier
                     .fillMaxSize(),
                 list = list,
-                onClickDetail = onClickDetail,
-                onClickLike = viewModel::onClickLike
+                onClickDetail = onClickDetail
             )
         }
     }
@@ -78,7 +77,6 @@ fun CaloriesForAgeListSuccessScreen(
     modifier: Modifier,
     list: LazyPagingItems<CalorieForAge>,
     onClickDetail: () -> Unit,
-    onClickLike: () -> Unit,
 ) {
     if (list.loadState.refresh is LoadState.Loading) {
         Box(
@@ -104,8 +102,7 @@ fun CaloriesForAgeListSuccessScreen(
                 list[index]?.let {
                     CaloriesForAgeItem(
                         data = it,
-                        onClickDetail = onClickDetail,
-                        onClickLike = onClickLike
+                        onClickDetail = onClickDetail
                     )
                 }
             }

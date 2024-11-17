@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException
 import javax.inject.Inject
@@ -28,21 +27,18 @@ class CaloriesForAgeListViewModel @Inject constructor(
 
     val uiEffect = _uiEffect.asSharedFlow()
     init {
-//        viewModelScope.launch {
-//            _uiState.value =
-//                ListUiState.Success(caloriesForAgeList = getCaloriesForAgeListUseCase().catch {
-//                    if (it is UnknownHostException) {
-//                        _uiEffect.emit(ListUiEffect.NetworkError("네트워크 연결을 확인해주세요."))
-//                    } else {
-//                        _uiEffect.emit(
-//                            ListUiEffect.NetworkError(it.message ?: "알 수 없는 오류가 발생했습니다.")
-//                        )
-//                    }
-//                }.cachedIn(viewModelScope))
-//        }
+        viewModelScope.launch {
+            _uiState.value =
+                ListUiState.Success(caloriesForAgeList = getCaloriesForAgeListUseCase().catch {
+                    if (it is UnknownHostException) {
+                        _uiEffect.emit(ListUiEffect.NetworkError("네트워크 연결을 확인해주세요."))
+                    } else {
+                        _uiEffect.emit(
+                            ListUiEffect.NetworkError(it.message ?: "알 수 없는 오류가 발생했습니다.")
+                        )
+                    }
+                }.cachedIn(viewModelScope))
+        }
     }
 
-    fun onClickLike() {
-
-    }
 }

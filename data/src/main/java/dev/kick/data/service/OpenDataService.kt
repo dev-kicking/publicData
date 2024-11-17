@@ -6,10 +6,11 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface OpenDataService {
-    @GET("/15050017/v1/uddi:9ab436e3-f169-49bf-8511-cb2e7a4ac314")
+//    https://api.odcloud.kr/api/15050017/v1/uddi:9ab436e3-f169-49bf-8511-cb2e7a4ac314
+    @GET("15050017/v1/uddi:9ab436e3-f169-49bf-8511-cb2e7a4ac314")
     suspend fun getCalorieForAgeList(
         @Query("page") page: Int,
-        @Query("perPage") perPage: Int = 10,
+        @Query("perPage") perPage: Int,
         @Query("serviceKey") serviceKey: String,
     ): Response<CalorieForAgeMetaDataResponse>
 }

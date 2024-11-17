@@ -10,22 +10,24 @@ class RetryInterceptor(
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
-        var response: Response
+        var response: Response? = null
         var retryCount = 0
 
         do {
             response = chain.proceed(request)
+
             if (!response.isSuccessful) {
                 if (retryCount < maxRetry) {
                     val waitTime = (1000 * backoffMultiplier.toDouble().pow(retryCount.toDouble())).toLong()
                     Thread.sleep(waitTime) // 대기 시간
                     retryCount++
+                    response.close()
                 } else {
                     break // 최대 재시도 횟수 초과 시 종료
                 }
             }
-        } while (!response.isSuccessful)
+        } while (response?.isSuccessful == false)
 
-        return response
+        return response ?: throw IllegalStateException("Response is null after retries")
     }
 } 

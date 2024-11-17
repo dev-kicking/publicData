@@ -16,9 +16,9 @@ data class CalorieForAge(
     val classificationPersonType: PersonType,
     val genderClassification: Int,
     val otherObesityCheckItems: Int,
-    val isLike: Boolean = false
+    val imageUrl: String,
 )
 
-enum class PersonType{
+enum class PersonType {
     MALE, FEMALE, CHILD
 }

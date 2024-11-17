@@ -19,5 +19,6 @@ internal fun CalorieForAgeMetaDataResponse.Data.toDomain() = CalorieForAge(
         else -> PersonType.CHILD
     },
     genderClassification = genderClassification,
-    otherObesityCheckItems = otherObesityCheckItems
+    otherObesityCheckItems = otherObesityCheckItems,
+    imageUrl = "https://picsum.photos/id/${id}/1080/1080"
 )
