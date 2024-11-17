@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_title">잠시 후 다시 시도해주시기 바랍니다.</string>
+    <string name="add_scrap_toast">스크랩 됐습니다.</string>
+    <string name="delete_scrap_toast">스크랩 해제 됐습니다.</string>
+</resources>
