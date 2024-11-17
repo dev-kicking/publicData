@@ -15,6 +15,12 @@ interface CalorieForAgeDao {
     @Query("SELECT * FROM calorieForAge")
     fun getCalorieForAgePagingSource(): PagingSource<Int, CalorieForAge>
 
+    @Query("SELECT * FROM calorieForAge")
+    fun getCalorieForAgeList(): List<CalorieForAge>
+
+    @Query("SELECT * FROM calorieForAge WHERE age=:age")
+    fun findCalorieForAgePagingSource(age: Int): PagingSource<Int, CalorieForAge>
+
     @Query("DELETE FROM calorieForAge")
     suspend fun clearAll()
 }

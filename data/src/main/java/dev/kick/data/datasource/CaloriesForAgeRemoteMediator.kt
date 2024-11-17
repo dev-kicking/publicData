@@ -16,7 +16,7 @@ import javax.inject.Inject
 class CaloriesForAgeRemoteMediator @Inject constructor(
     private val openDataService: OpenDataService,
     private val appApplication: AppApplication,
-    private val appDatabase: AppDatabase
+    private val appDatabase: AppDatabase,
 ) : RemoteMediator<Int, CalorieForAge>() {
 
     private val calorieForAgeDao = appDatabase.calorieForAgeDao()
@@ -28,7 +28,7 @@ class CaloriesForAgeRemoteMediator @Inject constructor(
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, CalorieForAge>
+        state: PagingState<Int, CalorieForAge>,
     ): MediatorResult {
         return try {
             val page = when (loadType) {
@@ -36,12 +36,15 @@ class CaloriesForAgeRemoteMediator @Inject constructor(
                     calorieForAgeRemoteKeyDao.deleteAll()
                     0
                 }
+
                 LoadType.PREPEND -> {
                     return MediatorResult.Success(endOfPaginationReached = true)
                 }
+
                 LoadType.APPEND -> {
                     val remoteKey = calorieForAgeRemoteKeyDao.getNextKey()
-                    remoteKey?.nextPage ?: return MediatorResult.Success(endOfPaginationReached = true)
+                    remoteKey?.nextPage
+                        ?: return MediatorResult.Success(endOfPaginationReached = true)
                 }
             }
 
@@ -68,9 +71,11 @@ class CaloriesForAgeRemoteMediator @Inject constructor(
                 MediatorResult.Error(Exception("${response.code()} ${response.message()}"))
             }
         } catch (e: Exception) {
-            MediatorResult.Error(e)
-        } catch (e: UnknownHostException) {
-            MediatorResult.Error(e)
+            if (e is UnknownHostException) {
+                throw UnknownHostException()
+            } else {
+                MediatorResult.Error(e)
+            }
         }
     }
 } 

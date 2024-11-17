@@ -6,6 +6,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dev.kick.domain.useCase.FindCaloriesForAgeListUseCase
+import dev.kick.domain.useCase.GetLocalCaloriesForAgeListUseCase
 import javax.inject.Singleton
 
 @Module
@@ -14,6 +16,18 @@ object OpenDataUseCaseModule {
     @Provides
     @Singleton
     fun provideGetCaloriesForAgeListUseCase(
-        repo: OpenDataRepo
+        repo: OpenDataRepo,
     ): GetCaloriesForAgeListUseCase = GetCaloriesForAgeListUseCase(repo)
+
+    @Provides
+    @Singleton
+    fun provideGetLocalCaloriesForAgeListUseCase(
+        repo: OpenDataRepo,
+    ): GetLocalCaloriesForAgeListUseCase = GetLocalCaloriesForAgeListUseCase(repo)
+
+    @Provides
+    @Singleton
+    fun provideFindCaloriesForAgeListUseCase(
+        repo: OpenDataRepo,
+    ): FindCaloriesForAgeListUseCase = FindCaloriesForAgeListUseCase(repo)
 }

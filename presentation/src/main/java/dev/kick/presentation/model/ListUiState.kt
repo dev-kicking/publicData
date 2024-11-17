@@ -18,5 +18,6 @@ sealed class ListUiState {
     @Immutable
     data class Success(
         val caloriesForAgeList: Flow<PagingData<CalorieForAge>> = emptyFlow(),
+        val text: String = ""
     ): ListUiState()
 }

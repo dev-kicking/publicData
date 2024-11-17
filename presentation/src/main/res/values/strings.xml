@@ -7,4 +7,5 @@
     <string name="recommended_calories">권장 칼로리</string>
     <string name="recommended_calcium">권장 칼슘</string>
     <string name="recommended_protein">권장 단백질</string>
+    <string name="textfield_hint">나이를 입력해보세요</string>
 </resources>
