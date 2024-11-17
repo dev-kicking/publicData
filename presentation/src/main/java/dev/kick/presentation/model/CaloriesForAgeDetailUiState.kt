@@ -5,15 +5,15 @@ import androidx.compose.runtime.Stable
 import dev.kick.domain.model.CalorieForAge
 
 @Stable
-sealed class DetailUiState {
+sealed class CaloriesForAgeDetailUiState {
     @Immutable
-    data object Loading: DetailUiState()
+    data object Loading: CaloriesForAgeDetailUiState()
 
     @Immutable
-    data object Error: DetailUiState()
+    data object Error: CaloriesForAgeDetailUiState()
 
     @Immutable
     data class Success(
         val data: CalorieForAge
-    ): DetailUiState()
+    ): CaloriesForAgeDetailUiState()
 }

@@ -5,9 +5,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.kick.data.datasource.AppDatabase
+import dev.kick.data.repo.LocalCaloriesForAgeRepoImpl
 import dev.kick.data.repo.OpenDataRepoImpl
 import dev.kick.data.service.OpenDataService
 import dev.kick.domain.repo.AppApplication
+import dev.kick.domain.repo.LocalCaloriesForAgeRepo
 import dev.kick.domain.repo.OpenDataRepo
 import javax.inject.Singleton
 
@@ -22,5 +24,13 @@ object RepoModule {
         appDatabase: AppDatabase,
     ): OpenDataRepo {
         return OpenDataRepoImpl(openDataService, appApplication, appDatabase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocalCaloriesForAgeRepository(
+        appDatabase: AppDatabase,
+    ): LocalCaloriesForAgeRepo {
+        return LocalCaloriesForAgeRepoImpl(appDatabase)
     }
 }

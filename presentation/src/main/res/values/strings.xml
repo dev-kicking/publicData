@@ -8,4 +8,9 @@
     <string name="recommended_calcium">권장 칼슘</string>
     <string name="recommended_protein">권장 단백질</string>
     <string name="textfield_hint">나이를 입력해보세요</string>
+    <string name="not_found_detail">정보를 찾을 수 없습니다.</string>
+    <string name="detail_screen_title">상세보기</string>
+    <string name="vitamin_a">비타민(A)</string>
+    <string name="vitamin_b1">비타민(B1)</string>
+    <string name="vitamin_b2">비타민(B2)</string>
 </resources>

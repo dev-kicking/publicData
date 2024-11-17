@@ -1,14 +1,20 @@
 package dev.kick.presentation
 
 import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.animation.core.AnimationConstants
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dev.kick.presentation.detail.CaloriesForAgeDetailScreen
 import dev.kick.presentation.list.CaloriesForAgeListScreen
 import dev.kick.presentation.navigation.CaloriesForAgeNavigation
+import dev.kick.presentation.navigation.SharedElementTransition
 
 @Composable
 fun CaloriesForAgeScreen() {
@@ -20,7 +26,7 @@ fun CaloriesForAgeScreen() {
     ) {
         composable<CaloriesForAgeNavigation.ListScreen> {
             CaloriesForAgeListScreen {
-                navController.popBackStack()
+                navController.navigate(CaloriesForAgeNavigation.DetailScreen(it))
             }
         }
 
@@ -50,7 +56,9 @@ fun CaloriesForAgeScreen() {
                 )
             }
         ) {
-            // TODO: 상세 페이지
+            CaloriesForAgeDetailScreen(
+                onBackClick = { navController.popBackStack() }
+            )
         }
     }
 }

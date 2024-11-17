@@ -1,13 +1,13 @@
 package dev.kick.domain.useCase
 
-import androidx.paging.PagingData
 import dev.kick.domain.model.CalorieForAge
 import dev.kick.domain.repo.LocalCaloriesForAgeRepo
+import dev.kick.domain.repo.OpenDataRepo
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class FindCaloriesForAgeListUseCase @Inject constructor(
+class GetCaloriesForAgeUseCase @Inject constructor(
     private val repo: LocalCaloriesForAgeRepo
 ) {
-    operator fun invoke(age: Int): Flow<PagingData<CalorieForAge>> = repo.findCalorieForAgeList(age)
+    operator fun invoke(id: Int): Flow<CalorieForAge> = repo.getCalorieForAge(id)
 }

@@ -8,6 +8,6 @@ sealed interface CaloriesForAgeNavigation {
 
     @Serializable
     data class DetailScreen(
-        val id: String
+        val id: Int
     ) : CaloriesForAgeNavigation
 }

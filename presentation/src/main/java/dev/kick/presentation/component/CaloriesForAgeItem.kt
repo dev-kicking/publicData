@@ -38,7 +38,7 @@ import dev.kick.presentation.R
 fun CaloriesForAgeItem(
     modifier: Modifier = Modifier,
     data: CalorieForAge,
-    onClickDetail: () -> Unit,
+    onClickDetail: (Int) -> Unit,
 ) {
     Card(
         shape = RoundedCornerShape(20.dp),
@@ -52,7 +52,7 @@ fun CaloriesForAgeItem(
                 spotColor = colorResource(id = R.color.black).copy(0.3f)
             ),
         border = BorderStroke(1.dp, colorResource(id = R.color.black)),
-        onClick = { onClickDetail() }
+        onClick = { onClickDetail(data.id) }
     ) {
         Box(
             modifier = Modifier

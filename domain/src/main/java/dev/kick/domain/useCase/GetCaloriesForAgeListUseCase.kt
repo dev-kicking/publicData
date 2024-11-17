@@ -9,5 +9,5 @@ import javax.inject.Inject
 class GetCaloriesForAgeListUseCase @Inject constructor(
     private val repo: OpenDataRepo
 ) {
-    operator fun invoke(): Flow<PagingData<CalorieForAge>> = repo.getCalorieForAge()
+    operator fun invoke(): Flow<PagingData<CalorieForAge>> = repo.getCalorieForAgeList()
 }

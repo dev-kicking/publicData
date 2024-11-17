@@ -2,6 +2,7 @@ package dev.kick.presentation.list
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,6 +27,7 @@ import dev.kick.presentation.component.CaloriesForAgeItem
 import dev.kick.presentation.component.ErrorScreen
 import dev.kick.presentation.component.LoadingScreen
 import dev.kick.presentation.component.TextFieldSearchBox
+import dev.kick.presentation.component.TopTitleBar
 import dev.kick.presentation.model.ListUiEffect
 import dev.kick.presentation.model.ListUiState
 import kotlinx.coroutines.flow.collectLatest
@@ -34,7 +36,7 @@ import kotlinx.coroutines.flow.collectLatest
 fun CaloriesForAgeListScreen(
     modifier: Modifier = Modifier,
     viewModel: CaloriesForAgeListViewModel = hiltViewModel(),
-    onClickDetail: () -> Unit,
+    onClickDetail: (Int) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
@@ -57,21 +59,28 @@ fun CaloriesForAgeListScreen(
         }
     }
 
-    when (uiState) {
-        ListUiState.Error -> ErrorScreen(Modifier.fillMaxSize())
-        ListUiState.Loading -> LoadingScreen(Modifier.fillMaxSize())
-        is ListUiState.Success -> {
-            val value = (uiState as ListUiState.Success)
+    Column {
+        TopTitleBar(
+            title = "연령별 권장 영양소 섭취량",
+            onClick = null
+        )
 
-            val list = value.caloriesForAgeList.collectAsLazyPagingItems()
-            CaloriesForAgeListSuccessScreen(
-                modifier = modifier
-                    .fillMaxSize(),
-                list = list,
-                text = value.text,
-                onClickDetail = onClickDetail,
-                onTextChange = viewModel::onTextChange
-            )
+        when (uiState) {
+            ListUiState.Error -> ErrorScreen(Modifier.fillMaxSize())
+            ListUiState.Loading -> LoadingScreen(Modifier.fillMaxSize())
+            is ListUiState.Success -> {
+                val value = (uiState as ListUiState.Success)
+
+                val list = value.caloriesForAgeList.collectAsLazyPagingItems()
+                CaloriesForAgeListSuccessScreen(
+                    modifier = modifier
+                        .fillMaxSize(),
+                    list = list,
+                    text = value.text,
+                    onClickDetail = onClickDetail,
+                    onTextChange = viewModel::onTextChange
+                )
+            }
         }
     }
 }
@@ -81,7 +90,7 @@ fun CaloriesForAgeListSuccessScreen(
     modifier: Modifier,
     list: LazyPagingItems<CalorieForAge>,
     text: String,
-    onClickDetail: () -> Unit,
+    onClickDetail: (Int) -> Unit,
     onTextChange: (String) -> Unit,
 ) {
     Box(
