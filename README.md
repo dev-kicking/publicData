@@ -10,7 +10,7 @@
 - **데이터베이스**: Room
 - **비동기 작업**: Coroutines, Flow
 - **모니터링**: Firebase Crashlytics, Leak canary
-- **아키텍쳐**: Layered architecture, MVI Pattern
+- **아키텍쳐**: Clean architecture, MVI Pattern
 
 ## 기능
 1. **공공 API 연동 및 고급 네트워크 처리**
